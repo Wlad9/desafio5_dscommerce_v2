@@ -3,7 +3,9 @@ package devSuperio.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_product")
@@ -79,4 +81,10 @@ public class Product {
         return categories;
     }
 
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+    public List<Order> getOrders(){
+        return items.stream().map(x-> x.getOrder()).collect(Collectors.toList());
+    }
 }
